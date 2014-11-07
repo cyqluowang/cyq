@@ -1,0 +1,267 @@
+<!doctype html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<script src="js/jquery-1.10.1.min.js"></script>
+<link rel="stylesheet" href="css/idangerous.swiper.css">
+<link rel="stylesheet" href="css/basic.css">
+<link rel="stylesheet" href="css/idangerous.swiper.scrollbar.css">
+<script src="js/turn.js"></script>
+<script src="js/jquery.transit.js"></script>
+<script src="js/idangerous.swiper.min.js"></script>
+<script src="js/idangerous.swiper.scrollbar-2.1.js"></script>
+<script src="js/html5shiv.js"></script>
+ <style>
+
+.swiper-slide{background: url("img/bg.jpg") no-repeat;background-size: cover;}
+.swiper-slide .name input{border: none;border-bottom: 1px solid #545454;width: 100px;text-align: center;background: none;}
+.swiper-slide .from{float: right;}
+.swiper-slide .txt{padding: 20px;}
+
+.arrow{position: fixed;bottom: 10px;width: 34px;display: none;opacity: 0.6;z-index: 1;}
+.br{right: 0px;-webkit-transform: rotate(140deg);}
+.bl{left: 0px;-webkit-transform: rotate(-140deg);}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.swiper-container {
+  display: none;
+}
+.swiper-scrollbar {
+  width: 100%;
+  height: 4px;
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+  z-index: 1;
+}
+.fullscreen{position: absolute;
+width: 320px;
+height: 506px;
+left: 50%;
+top: 50%;
+margin: -252px 0 0 -160px;display: none;}
+.fullscreen img{width:100%;height:100%;}
+</style>
+</head>
+<body>
+
+<div class="flipbook-viewport">
+	<div class="container">
+		<div class="flipbook">
+			<div>
+          <div class="fullscreen"><img src ="img/page1_bg.jpg"></div>
+      </div>
+			<div>
+				<div class="swiper-container">
+          <div class="swiper-scrollbar"></div>
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="txt">
+                <p class="name">Dear&nbsp;<input type="text"></p>
+                <p>Here goes some text</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dictum ipsum auctor nulla consectetur sed porta nunc placerat.</p>
+                <p>Nulla dui augue, sollicitudin egestas consequat a, consequat quis neque. Sed at mauris nunc. Donec rutrum leo id risus congue convallis. Maecenas ultrices condimentum velit, nec tincidunt lorem convallis consequat. Nulla elementum consequat quam eu euismod</p>
+                <p class="name from">Yours&nbsp;<input type="text"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+				<img src="img/arrow_b.png" class="arrow br">
+			</div>
+			<div>
+        <div class="fullscreen page3" style="display:none;"><img src ="img/page3_bg.jpg"></div>
+				<img src="img/arrow_b.png" class="arrow bl">
+			</div>
+		</div>
+	</div>
+</div>
+<audio id="audio" src="video/v.mp3" preload="auto" controls="controls" loop="true" hidden="true">
+<script type="text/javascript">
+var mySwiper = "";
+var time = "";
+window.onload = function() {
+	window.setInterval(function(){ window.scrollTo(0, 0);}, 0);
+	var myAuto =  document.getElementById('audio');
+	myAuto.play();
+	var h = document.documentElement.clientHeight;
+	var w = document.documentElement.clientWidth;
+  ws=w/320.0;
+  hs=h/504.0;
+  if(ws-hs>1) ws=hs;
+
+  $('.fullscreen').each(function(){
+      $(this).css({ scale: hs<ws?ws:hs});
+      $(this).show();
+  });
+
+	$('.flipbook').turn({
+			width:w,
+			height:h,
+			duration: 1000,
+			elevation: 50,
+			gradients: true,
+			autoCenter:false,
+			display: "single",
+			pages: 3
+	});
+  
+	$(".flipbook").turn("peel","br");
+
+	$(".flipbook").bind("turned", function(event, page, view){
+      if(mySwiper == ""){
+          mySwiper = new Swiper('.swiper-container',{
+            scrollContainer: true,
+            scrollbar: {
+              container: '.swiper-scrollbar',
+              hide:false
+            }
+          })
+      }
+  		$(".arrow").show();
+      if(time!=""){
+        clearInterval(time)
+      }
+
+  		if(page==2){
+        time = setInterval(function (argument) {
+          $(".br").transition({ right: -6,bottom:4},500,function () {
+            $(".br").css({"right":"0px","bottom":"10px"});
+          });
+        }, 1000)
+      }else if(page==3){
+        time = setInterval(function (argument) {
+          $(".bl").transition({ left: -6,bottom:4},500,function () {
+            $(".bl").css({"left":"0px","bottom":"10px"});
+          });
+        }, 1000)
+      }
+	});
+  $(".swiper-slide").height(h);
+  $(".swiper-slide").width(w*2);
+  $(".swiper-container").width(w);
+	$(".swiper-container").show();
+};
+</script>
+<script>
+var dataForWeixin={
+ 
+   appId: "",
+ 
+   MsgImg: "分享图片地址",
+ 
+   TLImg: "",
+ 
+   url: "分享链接",
+ 
+   title: "分享标题",
+ 
+   desc: '描述',
+ 
+   fakeid: "",
+ 
+   callback:function(){}
+ 
+};
+ 
+(function(){
+	
+    var onBridgeReady = function() {
+
+        WeixinJSBridge.on('menu:share:appmessage', function(argv) {
+
+            WeixinJSBridge.invoke('sendAppMessage', {
+
+                "appid": dataForWeixin.appId, 
+
+                "img_url": dataForWeixin.MsgImg, 
+
+                "img_width": "120", 
+
+                "img_height": "120", 
+
+                "link": dataForWeixin.url, 
+
+                "desc": dataForWeixin.desc, 
+
+                "title": dataForWeixin.title
+
+            }, function(res) {
+                (dataForWeixin.callback)();
+            });
+        });
+
+        WeixinJSBridge.on('menu:share:timeline', function(argv) {
+
+            (dataForWeixin.callback)();
+
+            WeixinJSBridge.invoke('shareTimeline',{
+
+                "img_url": dataForWeixin.TLImg, 
+
+                "img_width": "120", 
+
+                "img_height": "120", 
+
+                "link": dataForWeixin.url, 
+
+                "desc": dataForWeixin.desc, 
+
+                "title": dataForWeixin.title
+
+            }, function(res) {
+            });
+        });
+
+        WeixinJSBridge.on('menu:share:weibo', function(argv) {
+
+            WeixinJSBridge.invoke('shareWeibo',{
+
+                "content": dataForWeixin.title, 
+
+                "url": dataForWeixin.url
+
+            }, function(res){
+                (dataForWeixin.callback)();
+            });
+        });
+
+        WeixinJSBridge.on('menu:share:facebook', function(argv) {
+
+            (dataForWeixin.callback)();
+
+            WeixinJSBridge.invoke('shareFB', {
+
+                "img_url": dataForWeixin.TLImg, 
+
+                "img_width": "120", 
+
+                "img_height": "120", 
+
+                "link": dataForWeixin.url, 
+
+                "desc": dataForWeixin.desc, 
+
+                "title": dataForWeixin.title
+
+            }, function(res) {
+            });
+        });
+    };
+ 
+    if (document.addEventListener) {
+
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+     
+    } else if (document.attachEvent) {
+
+        document.attachEvent('WeixinJSBridgeReady'   , onBridgeReady);
+        document.attachEvent('onWeixinJSBridgeReady' , onBridgeReady);
+    }
+})();
+
+</script>
+</body>
+</html>
