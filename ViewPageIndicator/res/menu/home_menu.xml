@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/message"
+        android:icon="@drawable/ic_actbar_mail"
+        android:orderInCategory="1"
+        android:showAsAction="always"
+        android:title="消息"/>
+    <item
+        android:id="@+id/notice"
+        android:icon="@drawable/ic_actbar_notification"
+        android:orderInCategory="2"
+        android:showAsAction="always"
+        android:title="提醒"/>
+    <item
+        android:id="@+id/info"
+        android:icon="@drawable/ic_actbar_profile"
+        android:orderInCategory="3"
+        android:showAsAction="always"
+        android:title="用户"/>
+
+</menu>

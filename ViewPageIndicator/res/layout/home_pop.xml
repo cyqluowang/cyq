@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="240.0dip"
+    android:layout_height="wrap_content"
+    android:background="#EFEFEF" >
+
+    <LinearLayout
+        android:layout_width="240.0dip"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="240.0dip"
+            android:layout_height="wrap_content" >
+
+            <FrameLayout
+                android:id="@+id/framelayout_avatar"
+                android:layout_width="@dimen/small_image_size"
+                android:layout_height="@dimen/small_image_size"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/edge_padding"
+                android:focusable="false" >
+
+
+                <ImageView
+                    android:id="@+id/iv_user_shadow"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:focusable="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_actbar_logo" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                style="@style/Text.Title.Gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/small_margin"
+                android:layout_marginTop="@dimen/edge_padding"
+                android:layout_toRightOf="@id/framelayout_avatar"
+                android:text="听风者"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/tv_user_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_user_name"
+                android:layout_marginRight="@dimen/small_margin"
+                android:layout_toRightOf="@id/framelayout_avatar"
+                  android:text="过客谁听"
+                android:singleLine="true" />
+        </RelativeLayout>
+
+        <ImageView style="@style/Divider.Horizontal" />
+
+        <RelativeLayout
+            android:id="@+id/layout_post"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_large"
+            android:layout_marginRight="@dimen/edge_padding" >
+
+            <ImageView
+                android:id="@+id/iv_my_post"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="2.0dip"
+                android:src="@drawable/ic_popup_post" />
+
+            <TextView
+                style="@style/Text.PopupMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/iv_my_post"
+                android:text="发言" />
+
+            <TextView
+                android:id="@+id/tv_post_count"
+                style="@style/Text.Title.Gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/edge_padding" />
+        </RelativeLayout>
+
+        <ImageView style="@style/Divider.Horizontal" />
+
+        <RelativeLayout
+            android:id="@+id/layout_reply"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_large"
+            android:layout_marginRight="@dimen/edge_padding" >
+
+            <ImageView
+                android:id="@+id/iv_my_reply"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="2.0dip"
+                android:src="@drawable/ic_popup_reply" />
+
+            <TextView
+                style="@style/Text.PopupMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/iv_my_reply"
+                android:text="回应" />
+
+            <TextView
+                android:id="@+id/tv_reply_count"
+                style="@style/Text.Title.Gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/edge_padding" />
+        </RelativeLayout>
+
+        <ImageView style="@style/Divider.Horizontal" />
+
+        <RelativeLayout
+            android:id="@+id/layout_like"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_large"
+            android:layout_marginRight="@dimen/edge_padding" >
+
+            <ImageView
+                android:id="@+id/iv_my_like"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="2.0dip"
+                android:src="@drawable/ic_popup_like" />
+
+            <TextView
+                style="@style/Text.PopupMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/iv_my_like"
+                android:text="喜欢" />
+
+            <TextView
+                android:id="@+id/tv_like_count"
+                style="@style/Text.Title.Gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/edge_padding" />
+        </RelativeLayout>
+
+        <ImageView style="@style/Divider.Horizontal" />
+
+        
+
+       
+    </LinearLayout>
+
+</ScrollView>
